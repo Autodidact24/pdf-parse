@@ -89,43 +89,7 @@ def build_index(weaviate_client, embed_model, documents, index_name):
     return index
     ```
 
-```mermaid {width:400% !important}
-flowchart LR
-    A[Start] --> B{Is PDF Text-Based?}
-    B -- Yes --> C[Ingest PDF]
-    B -- No --> D[OCR Processing]
-    D --> C
-    C --> E[Convert Text to Vector Embeddings]
-    E --> F[Save Embeddings in Weaviate]
-    F --> G[Run LLM RAG with Ollama]
-    G --> H[Retrieve Information]
-    H --> I[Generate Report]
-    I --> J[End]
-    
-    subgraph Weaviate_Local_DB
-    F
-    end
-    
-    subgraph Docker_Container
-    Weaviate_Local_DB
-    end
-    
-    subgraph LLM_Model
-    G
-    end
-    
-    subgraph Data_Folder
-    C
-    end
-    
-    subgraph OCR_Module
-    D
-    end
-    
-    subgraph Report_Generation
-    I
-    end
-```
+![alt text](image-5.png)
 
 - Design the user interface and experience, ensuring ease of use for enterprise customers.
 
